@@ -1711,6 +1711,15 @@
                                     <action selector="ProtocolPressed:" destination="7sQ-B6-R4d" eventType="touchUpInside" id="WGI-MC-pko"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vFd-fL-cdI">
+                                <rect key="frame" x="667" y="64" width="104" height="62"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                <state key="normal" title="Cancel"/>
+                                <connections>
+                                    <action selector="CancelPressed:" destination="7sQ-B6-R4d" eventType="touchUpInside" id="lbc-tx-tGR"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
@@ -3848,7 +3857,6 @@
         <segue reference="Ges-mF-PUS"/>
         <segue reference="kTw-7t-VZN"/>
         <segue reference="fV2-tM-D7d"/>
-        <segue reference="AER-wR-ZtZ"/>
-        <segue reference="dL7-Sq-hiA"/>
+        <segue reference="e4f-h0-eqr"/>
     </inferredMetricsTieBreakers>
 </document>
