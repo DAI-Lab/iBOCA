@@ -3,4 +3,3 @@ script:
         - xcodebuild -project iBOCA.xcodeproj -alltargets
 	- xctool -project iBOCA.xcodeproj -target iBOCA -sdk iphonesimulator ONLY_ACTIVE_ARCH=NO
         - xctool test -project iBOCA.xcodeproj -target iBOCATests -sdk iphonesimulator ONLY_ACTIVE_ARCH=NO
-        - xctool test -project iBOCA.xcodeproj -target iBOCAUITests -sdk iphonesimulator ONLY_ACTIVE_ARCH=NO
