@@ -53,6 +53,8 @@ class TapInOrderViewController: BaseViewController {
     @IBOutlet weak var mBtnQuit: GradientButton!
     @IBOutlet weak var mBtnReset: GradientButton!
     @IBOutlet weak var mViewContent: UIView!
+    @IBOutlet weak var mNextRound: GradientButton!
+    
     
     // QuickStart Mode
     var quickStartModeOn: Bool = false
@@ -66,6 +68,14 @@ class TapInOrderViewController: BaseViewController {
     var mCounterView : CounterTimeView?
     var mTimerCounting : Timer?
     private var isPause: Bool = false
+    private var pressedNextRound: Bool = false
+    private var enableNextRound: Bool = false {
+        didSet {
+            mNextRound.titleLabel?.textColor = enableNextRound ? .white : Color.color(hexString: "#D5C9C4")
+            mNextRound.alpha = enableNextRound ? 1 : 0.8
+            mNextRound.isUserInteractionEnabled = enableNextRound
+        }
+    }
     
     //randomize 1st order; light up 1st button
     override func viewDidLoad() {
@@ -108,6 +118,21 @@ class TapInOrderViewController: BaseViewController {
         }
     }
     
+    
+    
+    @IBAction func ibaNexRound(_ sender: Any) {
+        guard numplaces < buttonList.count - 1 else {return}
+        self.enableNextRound = false
+        self.pressedNextRound = true
+        // Skip to next round, mean error increase 1
+        self.numErrors += 1
+        
+        let alert = UIAlertController.init(title: "", message: "Observe the pattern", preferredStyle: .alert)
+        alert.addAction(.init(title: "Ok", style: .default, handler: { (iaction) in
+            self.next(skipChecking: true)
+        }))
+        self.present(alert, animated: true, completion: nil)
+    }
     
     
     
@@ -260,9 +285,9 @@ class TapInOrderViewController: BaseViewController {
                 return
             }
             if iself.forwardNotBackward {
-                iself.drawSequenceRecursively(num: 0)
+                iself.checkAndDrawSequence(num: 0)
             } else {
-                iself.drawSequenceRecursively(num: iself.numplaces)
+                iself.checkAndDrawSequence(num: iself.numplaces)
             }
             iself.startTime2 = Foundation.Date()
             iself.currpressed = 0
@@ -359,7 +384,22 @@ class TapInOrderViewController: BaseViewController {
         }
     }
     
-
+    func checkAndDrawSequence(num: Int, skipChecking: Bool = false) {
+        // In case user press Next Round
+        if skipChecking {
+            self.pressedNextRound = false
+            drawSequenceRecursively(num: num)
+        }
+        else {
+            guard !self.pressedNextRound else {
+                self.pressedNextRound = false
+                return
+            }
+            
+            drawSequenceRecursively(num: num)
+        }
+    }
+    
     func drawSequenceRecursively(num:Int){
         if (forwardNotBackward && num > numplaces) ||
             (!forwardNotBackward && num < 0){
@@ -375,6 +415,8 @@ class TapInOrderViewController: BaseViewController {
                     for (index, _) in self.order.enumerated() {
                         self.buttonList[index].backgroundColor = Color.color(hexString: "649BFF")
                     }
+
+                    self.enableNextRound = self.numplaces < self.buttonList.count - 1
                     self.enableButtons()
                     self.levelStartTime = Foundation.Date()
                     self.resultTmpList.removeAll()
@@ -390,15 +432,15 @@ class TapInOrderViewController: BaseViewController {
                         DispatchQueue.main.asyncAfter(deadline: .now() + 1.0){ [weak self] in
                             if self?.ended == false{
                                 self?.buttonList[num].backgroundColor = Color.color(hexString: "649BFF")
-                                debugPrint("Drawing \(self?.index)")
+                                
                                 var num2 : Int = num
                                 if self?.forwardNotBackward == true{
                                     num2 += 1
                                 } else {
                                     num2 -= 1
                                 }
-                                debugPrint("num2: \(num2)")
-                                self?.drawSequenceRecursively(num: num2)
+                                
+                                self?.checkAndDrawSequence(num: num2)
                             }
                         }
                     }
@@ -496,22 +538,23 @@ class TapInOrderViewController: BaseViewController {
                     self.numRepeats += 1
                     self.numErrors += 1
                     self.randomizeOrder()
+                    
                     DispatchQueue.main.asyncAfter(deadline: .now() + 1.0){
                         if self.forwardNotBackward {
-                            self.drawSequenceRecursively(num: 0)
+                            self.checkAndDrawSequence(num: 0)
                         } else {
-                            self.drawSequenceRecursively(num: self.numplaces)
+                            self.checkAndDrawSequence(num: self.numplaces)
                         }
                     }
                 }))
                 self.present(alert, animated: true, completion: nil)
-                debugPrint("in repeat")
+                
             }
         }
     }
     
     //user completed sequence; reset repeats, increase numplaces so 1 more button lights up
-    func next(){
+    func next(skipChecking: Bool = false){
         
         numplaces = numplaces + 1
         
@@ -529,9 +572,9 @@ class TapInOrderViewController: BaseViewController {
                     }
                     DispatchQueue.main.asyncAfter(deadline: .now() + 1){
                         if self.forwardNotBackward {
-                            self.drawSequenceRecursively(num: 0)
+                            self.checkAndDrawSequence(num: 0, skipChecking: skipChecking)
                         } else {
-                            self.drawSequenceRecursively(num: self.numplaces)
+                            self.checkAndDrawSequence(num: self.numplaces, skipChecking: skipChecking)
                         }
                     }
                 }
@@ -617,6 +660,14 @@ class TapInOrderViewController: BaseViewController {
         mBtnReset.setupGradient(arrColor: [Color.color(hexString: "#FCD24B"),Color.color(hexString: "#FFC556")], direction: .topToBottom)
         mBtnReset.render()
         mBtnReset.addTextSpacing(-0.36)
+        
+        mNextRound.setTitle(title: "NEXT", withFont: Font.font(name: Font.Montserrat.bold, size: 18))
+        mNextRound.setupShadow(withColor: UIColor.clear, sketchBlur: 0, opacity: 0)
+//        mNextRound.setupGradient(arrColor: [Color.color(hexString: "#FCD24B"),Color.color(hexString: "#FFC556")], direction: .topToBottom)
+        mNextRound.render()
+        mNextRound.addTextSpacing(-0.36)
+        enableNextRound = false
+        
         //
         mViewContent.layer.cornerRadius = 8.0
         mViewContent.layer.shadowColor = Color.color(hexString: "#649BFF").withAlphaComponent(0.32).cgColor
@@ -657,9 +708,9 @@ class TapInOrderViewController: BaseViewController {
         let alert = UIAlertController.init(title: "", message: "Observe the pattern" , preferredStyle: .alert)
         alert.addAction(.init(title: "Ok", style: .default, handler: { (iaction) in
             if self.forwardNotBackward {
-                self.drawSequenceRecursively(num: 0)
+                self.checkAndDrawSequence(num: 0)
             } else {
-                self.drawSequenceRecursively(num: self.numplaces)
+                self.checkAndDrawSequence(num: self.numplaces)
             }
           
         }))
