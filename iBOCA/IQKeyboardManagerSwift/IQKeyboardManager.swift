@@ -2078,7 +2078,7 @@ Codeless drop-in universal library allows to prevent issues of keyboard sliding 
     private func showLog(_ logString: String) {
         
         if enableDebugging {
-            print("IQKeyboardManager: " + logString)
+            debugPrint("IQKeyboardManager: " + logString)
         }
     }
 }

@@ -22,7 +22,7 @@ public struct Font {
         if let font = UIFont(name: name, size: size) {
             return font
         }
-        print("Missing Font: \(name)")
+        debugPrint("Missing Font: \(name)")
         return UIFont.systemFont(ofSize: size)
     }
     

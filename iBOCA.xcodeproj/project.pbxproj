@@ -108,6 +108,8 @@
 		187F1B0D23F1048A00E8CCAD /* OFB.swift in Sources */ = {isa = PBXBuildFile; fileRef = 187F1AC123F1048900E8CCAD /* OFB.swift */; };
 		187F1B0E23F1048A00E8CCAD /* ChaCha20.swift in Sources */ = {isa = PBXBuildFile; fileRef = 187F1AC223F1048900E8CCAD /* ChaCha20.swift */; };
 		187F1B1023F1048A00E8CCAD /* Array+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 187F1AC423F1048900E8CCAD /* Array+Extension.swift */; };
+		18987AEC2418E3C8009C4934 /* PerformanceBezier.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18987AEB2418E3C8009C4934 /* PerformanceBezier.framework */; };
+		18987AF02418E499009C4934 /* ClippingBezier.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18987AEF2418E499009C4934 /* ClippingBezier.framework */; };
 		1B49EEF31DAC3B6600931E8C /* 3DFigureDraw.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B49EEF21DAC3B6600931E8C /* 3DFigureDraw.swift */; };
 		1B53650E1D7491CF0088B5D2 /* 3DFigureCopy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B53650D1D7491CF0088B5D2 /* 3DFigureCopy.swift */; };
 		1B6567401D7DE07B00C92FA3 /* SemanticListGeneration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B65673F1D7DE07B00C92FA3 /* SemanticListGeneration.swift */; };
@@ -381,7 +383,9 @@
 		187F1AC123F1048900E8CCAD /* OFB.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OFB.swift; sourceTree = "<group>"; };
 		187F1AC223F1048900E8CCAD /* ChaCha20.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChaCha20.swift; sourceTree = "<group>"; };
 		187F1AC423F1048900E8CCAD /* Array+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Array+Extension.swift"; sourceTree = "<group>"; };
-		188A56A12306687500C224F9 /* Asymmetric.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Asymmetric.swift; path = "../../../../Downloads/f64a4cf3e6257ff27c41133fda97c824-95b95b5f3285916a8d0a0719d788d7905ba9ccd8/Asymmetric.swift"; sourceTree = "<group>"; };
+		18987AEA2418E24C009C4934 /* Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Bridging-Header.h"; sourceTree = "<group>"; };
+		18987AEB2418E3C8009C4934 /* PerformanceBezier.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = PerformanceBezier.framework; sourceTree = SOURCE_ROOT; };
+		18987AEF2418E499009C4934 /* ClippingBezier.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ClippingBezier.framework; sourceTree = SOURCE_ROOT; };
 		1B49EEF21DAC3B6600931E8C /* 3DFigureDraw.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = 3DFigureDraw.swift; sourceTree = "<group>"; };
 		1B53650D1D7491CF0088B5D2 /* 3DFigureCopy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = 3DFigureCopy.swift; sourceTree = "<group>"; };
 		1B65673F1D7DE07B00C92FA3 /* SemanticListGeneration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SemanticListGeneration.swift; sourceTree = "<group>"; };
@@ -516,6 +520,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				18987AEC2418E3C8009C4934 /* PerformanceBezier.framework in Frameworks */,
+				18987AF02418E499009C4934 /* ClippingBezier.framework in Frameworks */,
 				F23951351EEE1ACF004B09E5 /* AVFoundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -772,6 +778,8 @@
 		1BC2DFED1D4F821F0020D430 /* iBOCA */ = {
 			isa = PBXGroup;
 			children = (
+				18987AEF2418E499009C4934 /* ClippingBezier.framework */,
+				18987AEB2418E3C8009C4934 /* PerformanceBezier.framework */,
 				1BC2DFEE1D4F821F0020D430 /* AppDelegate.swift */,
 				1BC2DFFA1D4F821F0020D430 /* Info.plist */,
 				E520BC3322D8307A0037EBA3 /* QuickStart */,
@@ -795,6 +803,7 @@
 				F20FF4C51F04757300B806B7 /* GeriatricDepressionScale.swift */,
 				F2A0F12E1F02682500A92B1F /* MOCAandGDT.swift */,
 				F233EABE1F9423BF0012702C /* GoldStandard.swift */,
+				18987AEA2418E24C009C4934 /* Bridging-Header.h */,
 			);
 			path = iBOCA;
 			sourceTree = "<group>";
@@ -935,7 +944,6 @@
 		B1A46DB522EECDE200EBB187 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				188A56A12306687500C224F9 /* Asymmetric.swift */,
 				F2A0F1271F02626D00A92B1F /* LandingPage.swift */,
 				1BC2DFF21D4F821F0020D430 /* Main.storyboard */,
 				1BC2DFF71D4F821F0020D430 /* LaunchScreen.storyboard */,
@@ -1794,16 +1802,27 @@
 		1BC2E0141D4F821F0020D430 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = N4Q7U8RR8X;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = iBOCA/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				ONLY_ACTIVE_ARCH = NO;
+				OTHER_LDFLAGS = (
+					"-ObjC++",
+					"-lstdc++",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.SethIzzyEllison.iBOCA.develop1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = iBoca.distribution;
+				SWIFT_OBJC_BRIDGING_HEADER = "$(PROJECT_DIR)/iBOCA/Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
@@ -1811,16 +1830,27 @@
 		1BC2E0151D4F821F0020D430 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = N4Q7U8RR8X;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = iBOCA/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				ONLY_ACTIVE_ARCH = NO;
+				OTHER_LDFLAGS = (
+					"-ObjC++",
+					"-lstdc++",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.SethIzzyEllison.iBOCA.develop1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = iBoca.distribution;
+				SWIFT_OBJC_BRIDGING_HEADER = "$(PROJECT_DIR)/iBOCA/Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 			};
 			name = Release;

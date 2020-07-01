@@ -64,7 +64,6 @@ class VideoView: UIView {
     }
     
     @objc func playerDidFinishPlaying() {
-        print("Video Finished")
         if let playerLayer = self.playerLayer {
             playerLayer.removeFromSuperlayer()
         }

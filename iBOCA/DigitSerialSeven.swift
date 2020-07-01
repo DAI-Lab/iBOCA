@@ -112,12 +112,12 @@ class DigitSerialSeven:DigitBaseClass {
             keys.append(gotKeys)
             gotTime.append(Foundation.Date())
             
-            print("num \(num)")
-            print("startNum \(startNum)")
-            print("lastNum \(lastNum)")
-            print("expectedNumber \(lastNum - 7)")
-            print("sequenceNumber \(startNum - 7*level)")
-            print("gotKeys \(gotKeys)")
+            debugPrint("num \(num)")
+            debugPrint("startNum \(startNum)")
+            debugPrint("lastNum \(lastNum)")
+            debugPrint("expectedNumber \(lastNum - 7)")
+            debugPrint("sequenceNumber \(startNum - 7*level)")
+            debugPrint("gotKeys \(gotKeys)")
             
             lastNum = num
         }

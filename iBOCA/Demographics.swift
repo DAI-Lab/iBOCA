@@ -223,7 +223,7 @@ extension Demographics {
         Results1.append(Education!)
         Results1.append(age!)
         Results1.append(Race!)
-        print(Results1)
+        debugPrint(Results1)
     }
     
     @IBAction func btnBackTapped(_ sender: Any) {
@@ -287,7 +287,7 @@ extension Demographics {
         Results1.append(age!)
         Results1.append(Race!)
         Results1.append(PUID)
-        print(Results1)
+        debugPrint(Results1)
         
         Settings.patientID = !_PID.isEmpty ? _PID : PID.getID()
         Settings.genderUser = _genderUser

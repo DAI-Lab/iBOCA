@@ -33,7 +33,7 @@ class AllResults  {
     
     // Remove all the results
     func doneWithPatient() {
-        print(toJson())
+        debugPrint(toJson())
         results.removeAllObjects()
     }
     

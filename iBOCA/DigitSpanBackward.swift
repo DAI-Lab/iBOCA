@@ -26,7 +26,7 @@ class DigitSpanBackward:DigitBothDirection {
     }
     
     override func levelEnd() -> Int {
-        return 8
+        return 6
     }
 }
 

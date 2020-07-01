@@ -138,7 +138,7 @@ class MainViewController: BaseViewController, MFMailComposeViewControllerDelegat
     }
     
     @objc func showVADelayTime(_ notification: NSNotification) {
-        print(notification.userInfo ?? "")
+        debugPrint(notification.userInfo ?? "")
         if let dict = notification.userInfo as NSDictionary? {
             if let id = dict["VADelayTime"] as? Int {
                 // do something with VADelayTime
@@ -149,7 +149,7 @@ class MainViewController: BaseViewController, MFMailComposeViewControllerDelegat
     }
     
     @objc func showSMDelayTime(_ notification: NSNotification) {
-        print(notification.userInfo ?? "")
+        debugPrint(notification.userInfo ?? "")
         if let dict = notification.userInfo as NSDictionary? {
             if let id = dict["SMDelayTime"] as? Int {
                 // do something with VADelayTime
@@ -423,7 +423,7 @@ extension MainViewController {
             let model = GoToTestCellModel.cre(ititle: item, pathIcon: arrIcon[index],iSegueID: arrSegueID[index],completed: checkStatusDone(fromTestStatus: iTestStatus))
             arrData.append(model)
         }
-        print("arrData: \(arrData)")
+        debugPrint("arrData: \(arrData)")
         mCollection?.reloadData()
     }
     

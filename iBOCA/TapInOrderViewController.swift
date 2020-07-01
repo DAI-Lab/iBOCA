@@ -114,7 +114,6 @@ class TapInOrderViewController: BaseViewController {
     //start from 1st button; reset all info
     
     @IBAction func Reset(_ sender: Any) {
-        print("in reset")
         
         //backButton.isEnabled = false
         startButton.isEnabled = false
@@ -148,7 +147,6 @@ class TapInOrderViewController: BaseViewController {
     func disableButtons() {
         for (index, _) in order.enumerated() {
             buttonList[index].removeTarget(self, action: #selector(buttonAction), for: UIControl.Event.touchUpInside)
-            print("buttons disabled")
         }
     }
     
@@ -181,7 +179,7 @@ class TapInOrderViewController: BaseViewController {
     //changes 'order' and 'buttonList' arrays, adds buttons; called in next, reset and viewDidLoad
     func randomizeOrder() {
         
-        print("randomizing order")
+        debugPrint("randomizing order")
         
         order = [Int]()
         //numplaces = 0
@@ -342,8 +340,8 @@ class TapInOrderViewController: BaseViewController {
             result.numErrors = self.numErrors
             result.numCorrects = self.numCorrects
             result.shortDescription = "Spatial span of \(self.numplaces) with \(self.numErrors) errors"
-            print("json: \(result.json)")
-            print("Spatial span of \(self.numplaces) with \(self.numErrors) errors")
+            debugPrint("json: \(result.json)")
+            debugPrint("Spatial span of \(self.numplaces) with \(self.numErrors) errors")
             if self.shouldAppendResult {
                 resultsArray.add(result)
                 self.shouldAppendResult = false
@@ -370,7 +368,7 @@ class TapInOrderViewController: BaseViewController {
                 textAlert = "Tap in reverse order of the pattern observed"
             }
             self.statusLabel.text = textAlert
-            print("...enabling buttons...numplaces = \(self.numplaces+2)")
+            debugPrint("...enabling buttons...numplaces = \(self.numplaces+2)")
             
             let alert = UIAlertController.init(title: "", message: textAlert, preferredStyle: .alert)
             alert.addAction(.init(title: "Ok", style: .default, handler: { (iaction) in
@@ -422,7 +420,7 @@ class TapInOrderViewController: BaseViewController {
         resultList[String((numplaces + 1)*100+numRepeats)] = reslist
         resultTmpList.removeAll()
         
-        print("selection done")
+        debugPrint("selection done")
         
         //false means user hit incorrect button
         if status == false {
@@ -458,7 +456,7 @@ class TapInOrderViewController: BaseViewController {
         if status == true {
             numCorrects += 1
         }
-        print("Done in \(n)! \(status)")
+        debugPrint("Done in \(n)! \(status)")
     }
     
     
@@ -507,7 +505,7 @@ class TapInOrderViewController: BaseViewController {
                     }
                 }))
                 self.present(alert, animated: true, completion: nil)
-                print("in repeat")
+                debugPrint("in repeat")
             }
         }
     }
@@ -519,7 +517,7 @@ class TapInOrderViewController: BaseViewController {
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.3){
             if self.ended == false {
-                print("next; DRAWING RECURSIVE SEQUENCE")
+                debugPrint("next; DRAWING RECURSIVE SEQUENCE")
                 self.numRepeats = 0
                 self.currpressed = 0
                 self.randomizeOrder()
@@ -544,14 +542,14 @@ class TapInOrderViewController: BaseViewController {
     //what happens when a user taps a button (if buttons are enabled at the time)
     @objc func buttonAction(sender:UIButton!)
     {
-        print("Button tapped")
+        debugPrint("Button tapped")
         let currTime = Foundation.Date()
         resultTmpList[String(currpressed)] = Int(1000*currTime.timeIntervalSince(levelStartTime))
         
         //find which button user has tapped
         for i in 0...buttonList.count-1 {
             if sender == buttonList[i] {
-                print("In button \(i)")
+                debugPrint("In button \(i)")
                 
                 //change color to indicate tap
                 sender.backgroundColor = UIColor.black
@@ -562,17 +560,17 @@ class TapInOrderViewController: BaseViewController {
                 
                 //get out of loop if it's the wrong button; will eventually lead to repeat()
                 if i != currpressed {
-                    print("BA: Problem \(i) is not \(currpressed)")
+                    debugPrint("BA: Problem \(i) is not \(currpressed)")
                     selectionDone(n: i, status:false)
                     return
                 }
                     //if it's the right button AND it's the last in the current sequence exit loop; will eventually go to next()
                 else if currpressed == numplaces {
-                    print("BA: at end of list cp=\(currpressed) i=\(i) - all OK")
+                    debugPrint("BA: at end of list cp=\(currpressed) i=\(i) - all OK")
                     selectionDone(n: i, status:true)
                     return
                 }
-                print("BA: \(i) is good")
+                debugPrint("BA: \(i) is good")
                 
                 //if it's the correct button but there are more in sequence, curpressed increases by 1 to check next tap
                 currpressed = currpressed + 1

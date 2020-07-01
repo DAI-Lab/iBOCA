@@ -99,7 +99,6 @@ class AdministeredViewController: BaseViewController {
             UserDefaults.standard.set(self.mSwitch.isOn, forKey: "AdminTransmit")
             UserDefaults.standard.synchronize()
             adminTransmitOn = self.mSwitch.isOn
-            print("Hihihi \(adminTransmitOn)")
         }
     }
     
@@ -151,13 +150,11 @@ class AdministeredViewController: BaseViewController {
         alert.addAction(.init(title: "CANCEL", style: .cancel, handler: { (iaction) in
             self.mSwitch.isOn = false
             adminTransmitOn = self.mSwitch.isOn
-            print("Hihihi \(adminTransmitOn)")
         }))
         alert.addAction(.init(title: "APPROVE", style: .default, handler: { (iaction) in
             UserDefaults.standard.set(self.mSwitch.isOn, forKey: "AdminTransmit")
             UserDefaults.standard.synchronize()
             adminTransmitOn = self.mSwitch.isOn
-            print("Hihihi \(adminTransmitOn)")
         }))
         self.present(alert, animated: true, completion: nil)
     }

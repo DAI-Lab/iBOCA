@@ -544,14 +544,11 @@ extension SimpleMemoryTask {
         if self.isStartNew == false {
             let startAlert = UIAlertController(title: "Start", message: "Choose start option.", preferredStyle: .alert)
             startAlert.addAction(UIAlertAction(title: "Start New Task", style: .default, handler: { (action) -> Void in
-                print("start new")
                 self.startNewTask()
             }))
             
             if(afterBreakSM == true){
                 startAlert.addAction(UIAlertAction(title: "Resume Task", style: .default, handler: { (action) -> Void in
-                    print("resume old")
-                    
                     for b in self.testSelectButtons {
                         b.isHidden = true
                     }
@@ -563,7 +560,6 @@ extension SimpleMemoryTask {
             }
             
             startAlert.addAction(UIAlertAction(title: "Cancel", style: .default, handler: { (action) -> Void in
-                print("cancel")
             }))
             
             self.present(startAlert, animated: true, completion: nil)
@@ -671,7 +667,6 @@ extension SimpleMemoryTask {
         
         let newStartAlert = UIAlertController(title: "Display", message: "Ask patient to name and remember these images.", preferredStyle: .alert)
         newStartAlert.addAction(UIAlertAction(title: "Start", style: .default, handler: { (action) -> Void in
-            print("start")
             self.ivTask.isHidden = false
             self.display()
         }))
@@ -681,8 +676,8 @@ extension SimpleMemoryTask {
     func display(){
         testCount = 0
         
-        print("testCount = \(testCount), imagesSM = \(imagesSM)")
-        print("imagesSM[testCount] = \(imagesSM[testCount])")
+        debugPrint("testCount = \(testCount), imagesSM = \(imagesSM)")
+        debugPrint("imagesSM[testCount] = \(imagesSM[testCount])")
         
         self.outputImage(withImageName: imagesSM[testCount])
         self.createTimerNextPicture()
@@ -702,12 +697,10 @@ extension SimpleMemoryTask {
         testCount += 1
         if testCount == imagesSM.count {
             self.timerNextPicture.invalidate()
-            print("delay")
             self.start.removeTarget(nil, action: nil, for: .allEvents)
             self.start.addTarget(self, action: #selector(startAlert), for:.touchUpInside)
             self.beginDelay()
         } else {
-            print("pic: \(testCount)")
             self.outputImage(withImageName: imagesSM[testCount])
         }
     }
@@ -791,7 +784,6 @@ extension SimpleMemoryTask {
         
         let recallAlert = UIAlertController(title: "Recall", message: "Ask patients to name the items that were displayed earlier. Record their answers.", preferredStyle: .alert)
         recallAlert.addAction(UIAlertAction(title: "Continue", style: .default, handler: { (action) -> Void in
-            print("recalling...")
             
             //action
             self.collectionViewObjectName.isHidden = false
@@ -808,7 +800,7 @@ extension SimpleMemoryTask {
     func findTime() -> Double {
         let currTime = NSDate.timeIntervalSinceReferenceDate
         let time = Double(Int((currTime - startTimeSM)*10))/10.0
-        print("time: \(time)")
+        debugPrint("time: \(time)")
         return time
     }
     
@@ -921,7 +913,6 @@ extension SimpleMemoryTask: UICollectionViewDelegate, UICollectionViewDataSource
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if collectionView == self.collectionViewLevel {
             let idx = indexPath.item
-            print("Selected Item \(idx)")
             switch idx {
             case 0:
                 imagesSM = images0
@@ -1016,7 +1007,6 @@ extension SimpleMemoryTask {
     }
     
     @IBAction func btnArrowLeftTapped(_ sender: Any) {
-        print("Arrow Left Tapped")
         testCount -= 1
         if testCount >= 0 {
             print("pic: \(testCount)")
@@ -1025,16 +1015,13 @@ extension SimpleMemoryTask {
     }
     
     @IBAction func btnArrowRightTapped(_ sender: Any) {
-        print("Arrow Right Tapped")
         testCount += 1
         if(testCount == imagesSM.count) {
-            print("delay")
             self.start.removeTarget(nil, action: nil, for: .allEvents)
             self.start.addTarget(self, action: #selector(startAlert), for:.touchUpInside)
             self.beginDelay()
         }
         else {
-            print("pic: \(testCount)")
             self.outputImage(withImageName: imagesSM[testCount])
         }
     }
@@ -1154,7 +1141,6 @@ extension SimpleMemoryTask {
     }
     
     fileprivate func recognize() {
-        print("IN RECOGNIZE!!!")
         self.collectionViewObjectName.isHidden = true
         self.originalAnswerButton.isHidden = true
         self.collectionViewLevel.isHidden = true

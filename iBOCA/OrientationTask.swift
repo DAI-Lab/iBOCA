@@ -672,7 +672,6 @@ extension OrientationTask: UIPickerViewDelegate, UIPickerViewDataSource {
     
     //returns length of pickerview contents
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int{
-        print("0:", pickerView)
         if pickerView == WeekPicker {
             return weekData.count
         }
@@ -684,7 +683,6 @@ extension OrientationTask: UIPickerViewDelegate, UIPickerViewDataSource {
     
     ////sets the final variables to selected row of the pickerview's text
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        print("1:",pickerView)
         if pickerView == WeekPicker {
             Week = weekData[row]
             return weekData[row]

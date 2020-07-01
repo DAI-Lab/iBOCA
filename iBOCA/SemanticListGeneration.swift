@@ -57,7 +57,7 @@ class SemanticListGeneration: BaseViewController, UIPickerViewDelegate {
     
     
     @IBAction func StartPressed(_ sender: Any) {
-        print(Category ?? "none")
+        debugPrint(Category ?? "none")
         
         self.StartButton.isHidden = true
         //BackButton.isHidden = true
@@ -140,13 +140,13 @@ class SemanticListGeneration: BaseViewController, UIPickerViewDelegate {
     @objc func updateCounter() {
         //you code, this is an example
         if counter >= 0 {
-            print("\(counter) seconds to the end of the world")
+            debugPrint("\(counter) seconds to the end of the world")
             let precnt = counter < 10 ? "0" : ""
             TimerLabel.text = "00:\(precnt)\(counter)"
             counter -= 1
         } else {
             myTimer.invalidate()
-            print("Done timer")
+            debugPrint("Done timer")
             
             StartButton.isHidden = false
             //BackButton.isHidden = false

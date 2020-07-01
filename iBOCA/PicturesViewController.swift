@@ -127,7 +127,6 @@ class PicturesViewController: BaseViewController {
                 placeLabel.text = "\(count+1)/\(namingImages.count)"
             }
         }
-        print(self.resultObjectName)
     }
     
     func done() {
@@ -223,8 +222,6 @@ class PicturesViewController: BaseViewController {
     }
     
     func getImageName()->String{
-        
-        print(count)
             
         return namingImages[count]
         
@@ -261,7 +258,7 @@ class PicturesViewController: BaseViewController {
         mViewResult.isHidden = true
         placeLabel.isHidden = true
         placeLabel.text = "\(count+1)/\(namingImages.count)"
-        print(selectedTest, terminator: "")
+        debugPrint(selectedTest, terminator: "")
         self.title = "Naming Pictures"
         startTime2 = NSDate()
         totalCount = namingImages.count
@@ -361,9 +358,6 @@ extension PicturesViewController {
         namingImageView.image = image3
         
         placeLabel.text = "\(count+1)/\(namingImages.count)"
-        print("UNDO")
-        print("count: \(count)")
-        print("back: \(back)")
     }
     
     @IBAction func btnBackTapped(_ sender: Any) {
